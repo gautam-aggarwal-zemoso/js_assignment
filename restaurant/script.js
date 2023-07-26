@@ -9,7 +9,7 @@ let menu = {
 }
 
 
-let tables = {
+let tablesTemplate = {
     // 'table-id': {dishName: {number: 1, price: 1}, ...}
     'table-no-1': {},
     'table-no-2': {},
@@ -32,6 +32,7 @@ function addTablesToStorage(tables) {
 
 
 function updateTable(dishId, tableId) {
+    let tables = getTablesFromStorage();
     // Add the dish price on the table.
     if (dishId in tables[tableId]) {
         tables[tableId][dishId]['price'] += menu[dishId];
@@ -113,6 +114,18 @@ function getTablesTotal(tables, tableNumber) {
     return [total, count]
 }
 
+function changeOrder(elem) {
+    console.log(elem.parent);
+}
+
+function deleteRow(rowId, dishName, tableName) {
+
+    let tables = getTablesFromStorage();
+    delete tables[tableName][dishName];
+    addTablesToStorage(tables);
+
+    document.getElementById(rowId).remove();
+}
 
 // Logic to create modal
 function createTableInfo(tableName) {
@@ -126,6 +139,7 @@ function createTableInfo(tableName) {
     for (let dishName in tables[tableName]) {
         console.log("Coming inside the loop!")
         let newRow = document.createElement("tr");
+        newRow.id = `${dishName}-${tableName}`;
         newRow.innerHTML = `
             <td>${++count}</td>
             <td>${dishName}</td>
@@ -134,7 +148,7 @@ function createTableInfo(tableName) {
                 <input type="number" value="${tables[tableName][dishName].number}" min="0" step="1" onchange="changeOrder(this)">
             </td>
             <td>
-                <button onclick="deleteRow(this)">Delete</button>
+                <button onclick="deleteRow('${newRow.id}', '${dishName}', '${tableName}')">Delete</button>
             </td>
         `;
         tableBody.appendChild(newRow);
@@ -150,12 +164,13 @@ function closeButton() {
 }
 
 function modalDisplay() {
-    let modal = document.getElementById('modal');
+    let modal = document.getElementsByClassName('modal-backdrop')[0];
     let modalTitle = document.getElementById('modal-title');
 
     let closButton = closeButton();
     closButton.onclick = () => {
         modal.style.display = 'none';
+        displayTables();
     }
 
     const tableDivs = document.getElementsByClassName('table-cards')[0];
@@ -214,14 +229,14 @@ function displayTables() {
 }
 
 window.addEventListener('load', (e) => {
-    addTablesToStorage(tables);
+    addTablesToStorage(tablesTemplate);
     displayMenu(menu);
-    displayTables(tables);
+    displayTables(tablesTemplate);
     addDragAndDropEvents();
 })
 
 window.onclick = function(event) {
-    let modal = document.getElementById('modal');
+    let modal = document.getElementsByClassName('modal-backdrop')[0];
     if (event.target == modal) {
       modal.style.display = "none";
     }
