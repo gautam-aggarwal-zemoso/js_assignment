@@ -1,0 +1,142 @@
+body, html {
+    margin: 1px;
+    padding: 0 20px 0 10px;
+    height: 100%;
+}
+
+.container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr 3px 3fr;
+    height: 100%;
+}
+
+.divider {
+    width: 3px;
+    background-color: black;
+}
+
+.tables {
+    display: grid;
+    grid-template-rows: 100px 50px auto;
+}
+
+.menu {
+    display: grid;
+    grid-template-rows: 100px 50px auto;
+}
+
+.menu-heading {
+    display: flex;
+    justify-content: center;
+}
+
+.table-heading {
+    display: flex;
+    justify-content: center;
+}
+
+#menu-search {
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: auto;
+    outline: none;
+}
+
+#table-search {
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: auto;
+    outline: none;
+}
+
+.table-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    max-height: 100px;
+    width: 100%;
+    max-width: auto;
+}
+
+.menu-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    max-height: 100px;
+    width: 100%;
+    max-width: auto;
+}
+  
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    background-color: white;
+  }
+  
+#modal-title {
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+}
+  
+#modal-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+  
+#modal-footer {
+    padding: 8px;
+    border: none;
+    bottom: 0;
+    right: 0;
+}
+  
+.generate-bill-btn {
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+  
+.close {
+    color: #160f0f;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#table th,
+#table td {
+    padding: 8px;
+    text-align: center;
+}
+
+#table {
+    width: 100%;
+    border-collapse: collapse;
+}
